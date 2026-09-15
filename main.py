@@ -10,20 +10,14 @@ import uuid
 import logging
 import functools
 
-import logging
-import tempfile  # ✅ 追加
-
-log_path = f"{tempfile.gettempdir()}/bot.log"  # ✅ Temalixで書ける場所に変更
-
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.FileHandler(log_path, encoding="utf-8"),  # ✅ 一時フォルダに出力先変更
-        logging.StreamHandler(),
+        logging.FileHandler("bot.log", encoding="utf-8"),
+        logging.StreamHandler()
     ]
 )
-
 logger = logging.getLogger(__name__)
 
 sys.path.append(os.path.join(os.getcwd(), "src"))
@@ -3008,25 +3002,17 @@ async def debug_attrs_cmd(interaction: discord.Interaction, t_code: str, a_code:
         await interaction.followup.send(chunk, ephemeral=True)
 
 
-if __name__ == "__main__":
+if __if __name__ == "__main__":
     import os
-    BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN") or os.getenv("BOT_TOKEN")
+    from dotenv import load_dotenv
+    load_dotenv()
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
     
-    _admin_ids_str = os.getenv("", "")
-    ADMIN_IDS = [1256574550901133377]
-    if _admin_ids_str:
-        try:
-            ADMIN_IDS = [int(x.strip()) for x in _admin_ids_str.split(",") if x.strip()]
-        except ValueError:
-            print("⚠️ ADMIN_IDS の形式がおかしいです（無視して起動します）")
-
-    # ✅ トークンだけ必須、ADMIN_IDS は無くてもOKに変更
     if not BOT_TOKEN:
-        print("❌ DISCORD_BOT_TOKEN を設定してください")
+        print(".envファイルまたは環境変数にBOT_TOKENを設定してください")
         sys.exit(1)
-    
-    if not ADMIN_IDS:
-        print("⚠️ ADMIN_IDS が未設定です。管理者コマンドは無効になります")
-
+    if not ADMIN_IDS or ADMIN_IDS == [1256574550901133377]:
+        print("main_bot.py の ADMIN_IDS に自分のDiscord IDを設定してください")
+        sys.exit(1)
     logger.info("Bot起動中...")
     bot.run(BOT_TOKEN)
