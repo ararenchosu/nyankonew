@@ -1644,15 +1644,15 @@ def apply_edits(save_file, item_keys: list) -> list:
     return applied
 
 def run_bcsfe_download(transfer_code: str, confirmation_code: str, cc_str: str):
-    from bcsfe import core
-
     import os
     os.environ["BCSFE_CONFIG_DIR"] = "/data/app/config"
     os.makedirs("/data/app/config", exist_ok=True)
 
+    from bcsfe import core
+
     core.core_data.init_data()
     cc_map = {"jp": "jp", "en": "en", "tw": "tw", "kr": "kr"}
-    # 以降そのまま
+    # 以降の行はそのまま残してください
     cc = core.CountryCode(cc_map.get(cc_str.lower(), "jp"))
     gv = core.GameVersion(120200)
     server_handler, result = core.ServerHandler.from_codes(
