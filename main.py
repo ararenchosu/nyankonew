@@ -1,7 +1,7 @@
-# ✅ BCSFE設定パスを最優先で設定（importより前！）
+# ✅ 【絶対に一番最初】XDG_CONFIG_HOMEを強制上書き
 import os
-os.environ["BCSFE_CONFIG_DIR"] = "/data/app/config"
-os.makedirs("/data/app/config", exist_ok=True)
+os.environ["XDG_CONFIG_HOME"] = "/data/app/config"
+os.makedirs("/data/app/config/bcsfe", exist_ok=True)
 
 import discord
 from discord import ui
@@ -1648,9 +1648,6 @@ def apply_edits(save_file, item_keys: list) -> list:
     return applied
 
 def run_bcsfe_download(transfer_code: str, confirmation_code: str, cc_str: str):
-    import os
-    os.environ["BCSFE_CONFIG_DIR"] = "/data/app/config"
-    os.makedirs("/data/app/config", exist_ok=True)
 
     from bcsfe import core
 
