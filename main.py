@@ -3011,8 +3011,13 @@ if __name__ == "__main__":
     if not BOT_TOKEN:
         print(".envファイルまたは環境変数にBOT_TOKENを設定してください")
         sys.exit(1)
-    if not ADMIN_IDS or ADMIN_IDS == [1256574550901133377]:
+    
+    # ✅ ID: 1256574550901133377 を正しく設定
+    ADMIN_IDS = [1256574550901133377]
+    
+    if not ADMIN_IDS:
         print("main_bot.py の ADMIN_IDS に自分のDiscord IDを設定してください")
         sys.exit(1)
+    
     logger.info("Bot起動中...")
     bot.run(BOT_TOKEN)
