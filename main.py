@@ -1,7 +1,13 @@
-# ✅ 【絶対に一番最初】XDG_CONFIG_HOMEを強制上書き
+# ✅ 【絶対に一番最初】XDGのパスを全部強制上書き
 import os
 os.environ["XDG_CONFIG_HOME"] = "/data/app/config"
+os.environ["XDG_STATE_HOME"] = "/data/app/state"
+os.environ["XDG_DATA_HOME"] = "/data/app/data"
+
+# 必要なフォルダを事前作成
 os.makedirs("/data/app/config/bcsfe", exist_ok=True)
+os.makedirs("/data/app/state/bcsfe", exist_ok=True)
+os.makedirs("/data/app/data/bcsfe", exist_ok=True)
 
 import discord
 from discord import ui
