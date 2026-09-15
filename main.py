@@ -3012,8 +3012,8 @@ if __name__ == "__main__":
     import os
     BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN") or os.getenv("BOT_TOKEN")
     
-    _admin_ids_str = os.getenv("1256574550901133377", "")
-    ADMIN_IDS = []
+    _admin_ids_str = os.getenv("", "")
+    ADMIN_IDS = [1256574550901133377]
     if _admin_ids_str:
         try:
             ADMIN_IDS = [int(x.strip()) for x in _admin_ids_str.split(",") if x.strip()]
