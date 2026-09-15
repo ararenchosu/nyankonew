@@ -3002,7 +3002,7 @@ async def debug_attrs_cmd(interaction: discord.Interaction, t_code: str, a_code:
         await interaction.followup.send(chunk, ephemeral=True)
 
 
-if __if __name__ == "__main__":
+if __name__ == "__main__":
     import os
     from dotenv import load_dotenv
     load_dotenv()
