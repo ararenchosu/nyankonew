@@ -1,9 +1,13 @@
+# ✅ BCSFE設定パスを最優先で設定（importより前！）
+import os
+os.environ["BCSFE_CONFIG_DIR"] = "/data/app/config"
+os.makedirs("/data/app/config", exist_ok=True)
+
 import discord
 from discord import ui
 from discord.ext import commands
 from discord import app_commands
 import json
-import os
 import sys
 import asyncio
 import uuid
